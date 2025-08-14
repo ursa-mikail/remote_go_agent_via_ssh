@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	sshHost := os.Getenv("SSH_HOST") 
+	sshHost := os.Getenv("SSH_HOST")
 	sshPass := os.Getenv("SSH_PASS")
 
 	if sshHost == "" || sshPass == "" {
