@@ -1,6 +1,8 @@
 # Remote Go Agent via SSH
 
-This project provides a simple tool to upload a Go program to a remote server over SSH and execute it, allowing developers to test or run Go code on remote machines without manually logging in.
+{remote_agent_upload.go, remoteprog.go} provides a simple tool to upload a Go program to a remote server over SSH and execute it, allowing developers to test or run Go code on remote machines without manually logging in.
+
+remote_key_manager.go: commands a remote server and manages multiple key files (key_01.json … key_0N.json). It can list all available key files on the remote, and download a specified key file on demand. This allows selective retrieval of secrets or data files without manually logging into the server.
 
 ## Prerequisites
 
