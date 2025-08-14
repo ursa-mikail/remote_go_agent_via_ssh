@@ -101,4 +101,12 @@ go version
 
 go mod tidy
 go run main.go
+
+% go run remote_agent_upload.go
+File uploaded successfully
+Remote program output:
+Hello from remote server!
+Running on:
+Current time: Thu, 14 Aug 2025 01:40:07 EDT
+
 */

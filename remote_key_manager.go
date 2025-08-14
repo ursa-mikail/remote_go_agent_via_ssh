@@ -114,4 +114,15 @@ go version
 
 go mod tidy
 go run main.go
+
+% go run remote_key_manager.go
+Created key_01.json ... key_05.json on remote server.
+Available keys on remote:
+ - key_02.json
+ - key_04.json
+ - key_03.json
+ - key_05.json
+ - key_01.json
+Enter key filename to download (e.g., key_03.json): key_05.json
+Downloaded key_05.json to local directory.
 */
