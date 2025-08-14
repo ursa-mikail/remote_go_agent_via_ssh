@@ -4,6 +4,8 @@
 
 remote_key_manager.go: commands a remote server and manages multiple key files (key_01.json … key_0N.json). It can list all available key files on the remote, and download a specified key file on demand. This allows selective retrieval of secrets or data files without manually logging into the server.
 
+{remote_agent_upload_and_run_shamir_split.go, remote_shamir.go}: provides a secure, portable way to split and recombine secrets using Shamir’s Secret Sharing, and allows you to run the program remotely over SSH without requiring Go or internet access on the remote server.
+
 ## Prerequisites
 
 - Go 1.20+ installed
