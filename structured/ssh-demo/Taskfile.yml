@@ -1,0 +1,64 @@
+version: '3'
+
+tasks:
+  upload:
+    desc: Upload a local file to the remote server
+    cmds:
+      - go run ./main.go upload --local="{{.LOCAL}}" --remote="{{.REMOTE}}"
+
+  exec:
+    desc: "Run a command on the remote host over SSH"
+    cmds:
+      - go run ./main.go exec -cmd "{{.CMD}}"
+
+  shamir:
+    desc: Create Shamir secret shares on remote
+    vars:
+      SECRET: ""
+      N: 5
+      K: 3
+      DIR: "/tmp/keys"
+    cmds:
+      - go run ./main.go shamir -secret "{{.SECRET}}" -n {{.N}} -k {{.K}} -dir "{{.DIR}}"
+
+  listkeys:
+    desc: List available Shamir key_*.json files on the remote host
+    vars:
+      DIR: "/tmp/keys"
+    cmds:
+      - go run ./main.go listkeys -dir "{{.DIR}}"
+
+  downloadkey:
+    desc: Download a specific Shamir key file from the remote host
+    vars:
+      FILE: '{{.FILE | default ""}}'
+      DIR: '{{.DIR | default "/tmp/keys"}}'
+      OUT: '{{.OUT | default ""}}'
+    preconditions:
+      - test -n "{{.FILE}}" || (echo "FILE required. Usage: task downloadkey FILE=key_01.json [DIR=/tmp/keys] [OUT=./key_01.json]" && exit 1)
+    cmds:
+      - |
+        if [ -n "{{.OUT}}" ]; then
+          go run ./main.go downloadkey -file "{{.FILE}}" -dir "{{.DIR}}" -out "{{.OUT}}"
+        else
+          go run ./main.go downloadkey -file "{{.FILE}}" -dir "{{.DIR}}"
+        fi
+
+  monitor:
+    desc: Collect basic system stats from the remote host
+    cmds:
+      - go run ./main.go monitor
+
+  automate:
+    desc: Run a demo automation workflow on the remote host
+    cmds:
+      - go run ./main.go automate
+
+  log:
+    desc: "Write a message to log (locally or optionally remotely)"
+    vars:
+      FILE: "/tmp/ssh_demo.log"
+    cmds:
+      - go run ./main.go log -msg "{{.MSG}}" -file "{{.FILE}}"
+
+
