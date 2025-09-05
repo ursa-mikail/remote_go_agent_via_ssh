@@ -254,6 +254,9 @@ Full uname info above.
 Memory info above.
 
 
+remoteTmp := "/tmp"           // temp upload location
+installDir := "/usr/local/bin" // final install location
+
 ✅ How it works
 
 Drop any binaries you want to carry in payloads/ (e.g., openssl, mytool).
